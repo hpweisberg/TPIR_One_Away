@@ -2,8 +2,6 @@
 import { useEffect, useState } from "react";
 
 
-import Game from "./Components/Game";
-
 import audiA5 from '/Cars/AudiA5.png';
 import chevyColbaltXFE from '/Cars/ChevyColbaltXFE.png';
 import chevyEquinox from '/Cars/ChevyEquinox.png';
@@ -107,8 +105,9 @@ function App() {
   const [fakePrice, setFakePrice] = useState([]);
   const [digitModification, setDigitModification] = useState([0, 0, 0, 0, 0]);
   console.log('digitaMod: ', digitModification);
-  const [bestAttempt, setBestAttempt] = useState(0);
-  console.log('bestAttempt: ', bestAttempt);
+  const [correctNums, setCorrectNums] = useState(0);
+  console.log('CN:', correctNums)
+
 
 
   const transformPrice = (price) => {
@@ -180,23 +179,31 @@ function App() {
     console.log('Submit');
     if (digitModification.includes(0)) {
       console.log('Please modify the price');
+      return; // Stop processing further if the user hasn't modified all digits
     }
 
     const originalPriceString = car.price.toString();
     const currentPriceString = fakePrice.join("");
 
-    let hasAtLeastOneSpotCorrect = false;
+    let correctPositions = 0;
+
     for (let i = 0; i < originalPriceString.length; i++) {
       if (originalPriceString.charAt(i) === currentPriceString.charAt(i)) {
-        hasAtLeastOneSpotCorrect = true;
-        break;
+        correctPositions++;
+
       }
     }
 
-    if (hasAtLeastOneSpotCorrect) {
-      console.log('You have at least one spot correct! You can choose again.');
-    } else {
+    if (correctPositions === 0) {
       console.log('You lost. No spots are correct.');
+      // Handle the loss condition here.
+    } else if (correctPositions === 5) {
+      console.log('Congratulations! You won!');
+      // Handle the win condition here.
+    } else {
+      console.log(`You have ${correctPositions} correct position(s). You can choose again.`);
+      setCorrectNums(correctPositions);
+      // Handle the case where the user has at least one spot correct.
     }
   };
 
@@ -204,7 +211,7 @@ function App() {
 
 
   return (
-    <main className="flex flex-col items-center gap-1 md:gap-4 h-screen">
+    <main className="flex flex-col items-center gap-1 md:gap-4 h-screen w-screen relative">
       <GameBoard
         car={car}
         fakePrice={fakePrice}
@@ -212,15 +219,16 @@ function App() {
         handleHigherClick={handleHigherClick}
         handleLowerClick={handleLowerClick}
         handleSubmit={handleSubmit}
+        correctNums={correctNums}
       />
       <h1>Prizes</h1>
-      {car && (
+      {/* {car && (
         <div>
           <img src={car.image} className="w-[300px]" alt="" />
           <p>Original Price: {car.price}</p>
           <p>Transformed Price: {fakePrice.join("")}</p>
         </div>
-      )}
+      )} */}
     </main>
   );
 }
