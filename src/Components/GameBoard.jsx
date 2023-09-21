@@ -7,8 +7,10 @@ const GameBoard = ({ car, fakePrice, handleDigitClick, handleLowerClick, handleH
 
   return (
     <div className="h-screen grid place-items-center [grid-template-areas:'stack']">
-        <img src={gameImg} className="h-screen w-full [grid-area:stack]" alt="" />
-        <h1 className="text-6xl font-bold text-white [grid-area:stack] w-full text-center">1 2 3 4 5</h1>
+        <img src={gameImg} className="h-screen w-full border-2 [grid-area:stack]" alt="" />
+        {/* <h1 className="text-6xl font-bold text-white [grid-area:stack] w-full text-center">1 2 3 4 5</h1> */}
+        <h1 className="text-[12vw] border-4 font-bold text-white [grid-area:stack] w-full text-center">1 2 3 4 5</h1>
+
 
       {/* {fakePrice && (
         <div className="flex text-1xl font-bold text-white [grid-area:stack]  ">
