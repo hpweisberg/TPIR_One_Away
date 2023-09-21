@@ -6,15 +6,12 @@ const GameBoard = ({ car, fakePrice, handleDigitClick, handleLowerClick, handleH
   console.log('GB FP: ', fakePrice);
 
   return (
-    <div className="flex w-full relative">
-      <div className="absolute -z-10 border-2 w-[50%] h-[600px] border-red-700 top-0 left-1/2 transform -translate-x-1/2 translate-y-12 ">
-        {/* <div className=" -z-10 w-[300px] md:w-[50vw] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-10 border-2 "> */}
-        <img src={gameImg} className="w-[100%] border-2" alt="" />
+    <div className="h-screen grid place-items-center [grid-template-areas:'stack']">
+        <img src={gameImg} className="h-screen w-full [grid-area:stack]" alt="" />
+        <h1 className="text-6xl font-bold text-white [grid-area:stack] w-full text-center">1 2 3 4 5</h1>
 
-      {/* <h1>GameBoard</h1> */}
-      {fakePrice && (
-        <div className=" flex absolute w-full shrink-0 justify-center left-0 top-20 border-4 border-black  ">
-        {/* <div className="flex absolute border-4 border-green-400 z-10 top-[450%] left-[48%] -translate-x-[50%] -translate-y-[50%] text-center w-screen justify-center "> */}
+      {/* {fakePrice && (
+        <div className="flex text-1xl font-bold text-white [grid-area:stack]  ">
           {fakePrice.map((digit, index) => (
             <Digit
             key={index}
@@ -26,11 +23,11 @@ const GameBoard = ({ car, fakePrice, handleDigitClick, handleLowerClick, handleH
             />
             ))}
         </div>
-      )}
-      {correctNums && <p>{correctNums}</p>}
-      <button onClick={handleSubmit}>Submit</button>
+      )} */}
+      {/* {correctNums && <p>{correctNums}</p>}
+      <button onClick={handleSubmit}>Submit</button> */}
       </div>
-    </div>
+    // </div>
   );
 };
 

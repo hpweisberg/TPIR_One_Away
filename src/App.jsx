@@ -211,7 +211,7 @@ function App() {
 
 
   return (
-    <main className="flex flex-col items-center gap-1 md:gap-4 h-screen w-screen relative">
+    <main className="flex flex-col items-center gap-1 md:gap-4 h-screen w-screen">
       <GameBoard
         car={car}
         fakePrice={fakePrice}

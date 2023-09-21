@@ -5,7 +5,7 @@ const Digit = ({ value, index, onClick, handleHigherClick, handleLowerClick }) =
   };
 
   return (
-    <div className="flex flex-col  mx-1 border-4 border-slate-400">
+    <div className="flex flex-col  mx-1 border-4 border-green-600">
       <button onClick={() => handleHigherClick(index)} className="border-2 w-10 h-10">
         
       </button>
